@@ -41,7 +41,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,vue}": [
-      "npx @biomejs/biome check --apply-unsafe ./src"
+      "npx @biomejs/biome check --write --unsafe ./src"
     ],
     "*.css": "biome format --write ./src",
     "*.md": "biome format --write"
