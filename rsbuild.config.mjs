@@ -2,6 +2,8 @@ import { defineConfig } from "@rsbuild/core";
 import { pluginVue } from "@rsbuild/plugin-vue";
 import { pluginSass } from '@rsbuild/plugin-sass';
 import { pluginImageCompress } from '@rsbuild/plugin-image-compress';
+import { pluginVueJsx } from '@rsbuild/plugin-vue-jsx';
+import { pluginBabel } from '@rsbuild/plugin-babel';
 
 console.log("BASE_URL:", import.meta.env.BASE_URL);
 
@@ -12,7 +14,11 @@ export default defineConfig(({ env, command, envMode }) => {
 
   return {
     plugins: [
+      pluginBabel({
+        include: /\.(?:jsx|tsx)$/,
+      }),
       pluginVue(),
+      pluginVueJsx(),
       pluginSass(),
       pluginImageCompress(), // 使用图片压缩
     ],

@@ -6,8 +6,14 @@
     <div class="w-[100px] h-[100px] mx-auto flex items-center justify-center bg-white text-red">
       <span>test</span>
     </div>
+
+    <jsxComponent />
   </div>
 </template>
+
+<script setup>
+import jsxComponent from "@/components/jsx-component.jsx";
+</script>
 
 <style scoped>
 
