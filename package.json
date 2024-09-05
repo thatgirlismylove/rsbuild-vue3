@@ -1,0 +1,47 @@
+{
+  "name": "rsbuild-vue3",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start:dev": "NODE_ENV=development rsbuild dev --env-dir envConfig --env-mode dev",
+    "start:test": "NODE_ENV=development rsbuild dev --env-dir envConfig --env-mode test",
+    "start:prod": "NODE_ENV=development rsbuild dev --env-dir envConfig --env-mode prod",
+    "build:dev": "NODE_ENV=production rsbuild build --env-dir envConfig --env-mode dev",
+    "build:prod": "NODE_ENV=production rsbuild build --env-dir envConfig --env-mode prod",
+    "preview:prod": "NODE_ENV=production rsbuild preview --env-dir envConfig --env-mode prod",
+    "check": "biome check --write",
+    "format": "biome format --write",
+    "postinstall": "simple-git-hooks"
+  },
+  "dependencies": {
+    "lint-staged": "^15.2.10",
+    "simple-git-hooks": "^2.11.1",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@rsbuild/core": "1.0.1-rc.4",
+    "@rsbuild/plugin-image-compress": "^1.0.2",
+    "@rsbuild/plugin-sass": "1.0.1-rc.4",
+    "@rsbuild/plugin-vue": "1.0.1-rc.4",
+    "@unocss/postcss": "^0.62.3",
+    "unocss": "^0.62.3"
+  },
+  "browserslist": [
+    "iOS >= 9",
+    "Android >= 4.4",
+    "last 2 versions",
+    "> 0.2%",
+    "not dead"
+  ],
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue}": [
+      "npx @biomejs/biome check --apply-unsafe ./src"
+    ],
+    "*.css": "biome format --write ./src",
+    "*.md": "biome format --write"
+  }
+}
