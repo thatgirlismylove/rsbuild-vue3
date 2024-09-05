@@ -18,6 +18,8 @@ export default defineConfig(({ env, command, envMode }) => {
         include: /\.(?:jsx|tsx)$/,
       }),
       pluginVue(),
+
+      
       pluginVueJsx(),
       pluginSass(),
       pluginImageCompress(), // 使用图片压缩

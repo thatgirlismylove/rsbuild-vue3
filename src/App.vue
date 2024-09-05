@@ -9,10 +9,12 @@
 
     <jsxComponent />
   </div>
+
+  
 </template>
 
 <script setup>
-import jsxComponent from "@/components/jsx-component.jsx";
+import jsxComponent from '@/components/jsx-component.jsx';
 </script>
 
 <style scoped>
