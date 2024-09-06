@@ -4,64 +4,101 @@ import { pluginImageCompress } from '@rsbuild/plugin-image-compress';
 import { pluginSass } from '@rsbuild/plugin-sass';
 import { pluginVue } from '@rsbuild/plugin-vue';
 import { pluginVueJsx } from '@rsbuild/plugin-vue-jsx';
+import AutoImport from 'unplugin-auto-import/rspack'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import AutoComponents from 'unplugin-vue-components/rspack'
 
 console.log('BASE_URL:', import.meta.env.BASE_URL);
 
 export default defineConfig(({ env, command, envMode }) => {
-  console.log('env:', env);
-  console.log('command:', command);
-  console.log('envMode:', envMode);
+	console.log('env:', env);
+	console.log('command:', command);
+	console.log('envMode:', envMode);
 
-  return {
-    plugins: [
-      pluginBabel({
-        include: /\.(?:jsx|tsx)$/,
-      }),
-      pluginVue(),
-
-      pluginVueJsx(),
-      pluginSass(),
-      pluginImageCompress(), // 使用图片压缩
-    ],
-    source: {
-      entry: {
-        index: './src/index.js',
-      },
-      // 路径别名
-      alias: {
-        '@': './src',
-      },
+	return {
+		plugins: [
+			// Vue 的 JSX 插件依赖 Babel 进行编译
+			pluginBabel({
+				include: /\.(?:jsx|tsx)$/,
+			}),
+			pluginVue(),
+			pluginVueJsx(), // 支持 jsx 语法
+			pluginSass(), // 支持 sass 语法
+			pluginImageCompress(), // 使用图片压缩
+		],
+    tools: {
+      rspack: {
+        plugins: [
+          AutoImport({
+            resolvers: [
+              ElementPlusResolver({
+                importStyle: 'scss'
+              })
+            ],
+            dts: false,
+            imports: ['vue', 'vue-router', 'pinia'],
+            eslintrc: {
+              // 已存在文件设置默认 false，需要更新时再打开，防止每次更新都重新生成
+              enabled: true,
+              // 生成文件地址和名称
+              filepath: './.eslintrc-auto-import.json',
+              globalsPropValue: true
+            }
+          }),
+          AutoComponents({
+            // 自动加载组件的目录配置,默认的为 'src/components'
+            dirs: ['src/components'],
+            // 组件支持的文件后缀名
+            extensions: ['vue','jsx','tsx'],
+            dts: false,
+            resolvers: [
+              ElementPlusResolver({
+                importStyle: 'scss'
+              })
+            ]
+          }),
+        ]
+      }
     },
-    output: {
-      target: 'web', // 默认 environment
-      polyfill: 'off', // 不需要兼容 IE 11
-      minify: true, // 默认在生产模式下压缩 js css
-      cleanDistPath: env === 'production',
-      sourceMap: true,
-    },
-    dev: {
-      lazyCompilation: true, // 开发模式启动，按需编译
-      hmr: true, // 模块热更新,开发模式下默认启用
-    },
-    server: {
-      open: true,
-      port: 3002,
-      htmlFallback: 'index', // 默认情况下，当请求满足以下条件且未找到对应资源时，会回退到 index.html
-      proxy: {
-        '/api': 'http://localhost:3000',
-      },
-    },
-    html: {
-      // 设置页面 title
-      title: 'Rsbuild React',
-    },
-    performance: {
-      // 代码分割配置
-      chunkSplit: {
-        strategy: 'split-by-size',
-        minSize: 30000,
-        maxSize: 50000,
-      },
-    },
-  };
+		source: {
+			entry: {
+				index: './src/index.js',
+			},
+			// 路径别名
+			alias: {
+				'@': './src',
+			},
+		},
+		output: {
+			target: 'web', // 默认 environment
+			polyfill: 'off', // 不需要兼容 IE 11
+			minify: true, // 默认在生产模式下压缩 js css
+			cleanDistPath: env === 'production',
+			sourceMap: true,
+		},
+		dev: {
+			lazyCompilation: true, // 开发模式启动，按需编译
+			hmr: true, // 模块热更新,开发模式下默认启用
+		},
+		server: {
+			open: true,
+			port: 3002,
+			htmlFallback: 'index', // 默认情况下，当请求满足以下条件且未找到对应资源时，会回退到 index.html
+			proxy: {
+				'/api': 'http://localhost:3000',
+			},
+		},
+		html: {
+			// 设置页面 title
+			title: 'Rsbuild React',
+		},
+		performance: {
+			// 代码分割配置
+			chunkSplit: {
+				strategy: 'split-by-size',
+				minSize: 30000,
+				maxSize: 50000,
+			},
+		},
+	};
 });
