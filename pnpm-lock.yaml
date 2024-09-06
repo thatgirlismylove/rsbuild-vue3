@@ -11,15 +11,24 @@ dependencies:
   element-plus:
     specifier: ^2.8.1
     version: 2.8.1(vue@3.5.1)
+  install:
+    specifier: ^0.13.0
+    version: 0.13.0
   lint-staged:
     specifier: ^15.2.10
     version: 15.2.10
+  pinia:
+    specifier: ^2.2.2
+    version: 2.2.2(vue@3.5.1)
   simple-git-hooks:
     specifier: ^2.11.1
     version: 2.11.1
   vue:
     specifier: ^3.5.0
     version: 3.5.1
+  vue-router:
+    specifier: '4'
+    version: 4.4.3(vue@3.5.1)
 
 devDependencies:
   '@biomejs/biome':
@@ -1967,6 +1976,10 @@ packages:
       '@vue/compiler-dom': 3.5.1
       '@vue/shared': 3.5.1
 
+  /@vue/devtools-api@6.6.3:
+    resolution: {integrity: sha512-0MiMsFma/HqA6g3KLKn+AGpL1kgKhFWszC9U29NfpWK5LE7bjeXxySWJrOJ77hBz+TBrBQ7o4QJqbPbqbs8rJw==}
+    dev: false
+
   /@vue/reactivity@3.5.1:
     resolution: {integrity: sha512-aFE1nMDfbG7V+U5vdOk/NXxH/WX78XuAfX59vWmCM7Ao4lieoc83RkzOAWun61sQXlzNZ4IgROovFBHg+Iz1+Q==}
     dependencies:
@@ -2853,6 +2866,11 @@ packages:
       - supports-color
     dev: true
 
+  /install@0.13.0:
+    resolution: {integrity: sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==}
+    engines: {node: '>= 0.10'}
+    dev: false
+
   /is-binary-path@2.1.0:
     resolution: {integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==}
     engines: {node: '>=8'}
@@ -3225,6 +3243,23 @@ packages:
     resolution: {integrity: sha512-eG2dWTVw5bzqGRztnHExczNxt5VGsE6OwTeCG3fdUf9KBsZzO3R5OIIIzWR+iZA0NtZ+RDVdaoE2dK1cn6jH4g==}
     engines: {node: '>=0.10'}
     hasBin: true
+    dev: false
+
+  /pinia@2.2.2(vue@3.5.1):
+    resolution: {integrity: sha512-ja2XqFWZC36mupU4z1ZzxeTApV7DOw44cV4dhQ9sGwun+N89v/XP7+j7q6TanS1u1tdbK4r+1BUx7heMaIdagA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.3.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': 6.6.3
+      vue: 3.5.1
+      vue-demi: 0.14.10(vue@3.5.1)
     dev: false
 
   /pkg-types@1.2.0:
@@ -4033,6 +4068,15 @@ packages:
       watchpack: 2.4.2
       webpack: 5.94.0(esbuild@0.23.1)
     dev: true
+
+  /vue-router@4.4.3(vue@3.5.1):
+    resolution: {integrity: sha512-sv6wmNKx2j3aqJQDMxLFzs/u/mjA9Z5LCgy6BE0f7yFWMjrPLnS/sPNn8ARY/FXw6byV18EFutn5lTO6+UsV5A==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.6.3
+      vue: 3.5.1
+    dev: false
 
   /vue@3.5.1:
     resolution: {integrity: sha512-k4UNnbPOEskodSxMtv+B9GljdB0C9ubZDOmW6vnXVGIfMqmEsY2+ohasjGguhGkMkrcP/oOrbH0dSD41x5JQFw==}

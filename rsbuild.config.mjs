@@ -4,9 +4,9 @@ import { pluginImageCompress } from '@rsbuild/plugin-image-compress';
 import { pluginSass } from '@rsbuild/plugin-sass';
 import { pluginVue } from '@rsbuild/plugin-vue';
 import { pluginVueJsx } from '@rsbuild/plugin-vue-jsx';
-import AutoImport from 'unplugin-auto-import/rspack'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import AutoComponents from 'unplugin-vue-components/rspack'
+import AutoImport from 'unplugin-auto-import/rspack';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import AutoComponents from 'unplugin-vue-components/rspack';
 
 console.log('BASE_URL:', import.meta.env.BASE_URL);
 
@@ -26,40 +26,39 @@ export default defineConfig(({ env, command, envMode }) => {
 			pluginSass(), // 支持 sass 语法
 			pluginImageCompress(), // 使用图片压缩
 		],
-    tools: {
-      rspack: {
-        plugins: [
-          AutoImport({
-            resolvers: [
-              ElementPlusResolver({
-                importStyle: 'scss'
-              })
-            ],
-            dts: false,
-            imports: ['vue', 'vue-router', 'pinia'],
-            eslintrc: {
-              // 已存在文件设置默认 false，需要更新时再打开，防止每次更新都重新生成
-              enabled: true,
-              // 生成文件地址和名称
-              filepath: './.eslintrc-auto-import.json',
-              globalsPropValue: true
-            }
-          }),
-          AutoComponents({
-            // 自动加载组件的目录配置,默认的为 'src/components'
-            dirs: ['src/components'],
-            // 组件支持的文件后缀名
-            extensions: ['vue','jsx','tsx'],
-            dts: false,
-            resolvers: [
-              ElementPlusResolver({
-                importStyle: 'scss'
-              })
-            ]
-          }),
-        ]
-      }
-    },
+		tools: {
+			rspack: {
+				plugins: [
+					AutoImport({
+						resolvers: [
+							ElementPlusResolver({
+								importStyle: 'scss',
+							}),
+						],
+						dts: false,
+						imports: ['vue', 'vue-router', 'pinia'],
+						biomelintrc: {
+							// 已存在文件设置默认 false，需要更新时再打开，防止每次更新都重新生成
+							enabled: false,
+							// 生成文件地址和名称
+							filepath: './.biomelintrc-auto-import.json', // Default `./.biomelintrc-auto-import.json`
+						},
+					}),
+					AutoComponents({
+						// 自动加载组件的目录配置,默认的为 'src/components'
+						dirs: ['src/components'],
+						// 组件支持的文件后缀名
+						extensions: ['vue', 'jsx', 'tsx'],
+						dts: false,
+						resolvers: [
+							ElementPlusResolver({
+								importStyle: 'scss',
+							}),
+						],
+					}),
+				],
+			},
+		},
 		source: {
 			entry: {
 				index: './src/index.js',
@@ -90,7 +89,7 @@ export default defineConfig(({ env, command, envMode }) => {
 		},
 		html: {
 			// 设置页面 title
-			title: 'Rsbuild React',
+			title: 'Rsbuild Vue3',
 		},
 		performance: {
 			// 代码分割配置
