@@ -16,6 +16,8 @@ export default defineConfig(({ env, command, envMode }) => {
 	console.log('envMode:', envMode);
 
 	return {
+		// root: './foo', 指定项目根目录， 默认为 process.cwd()
+		// mode 本项目通过 process.env.NODE_ENV 设置
 		plugins: [
 			// Vue 的 JSX 插件依赖 Babel 进行编译
 			pluginBabel({
@@ -100,6 +102,7 @@ export default defineConfig(({ env, command, envMode }) => {
 				// maxSize: 500000,
 			},
 			removeConsole: true, // 生产模式构建时，是否自动移除代码中所有的 console.[methodName]
+			bundleAnalyze: {}, // 开启分析产物体积，生成 ./dist/report-web.html 文件
 		},
 	};
 });
