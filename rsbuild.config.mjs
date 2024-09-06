@@ -94,10 +94,12 @@ export default defineConfig(({ env, command, envMode }) => {
 		performance: {
 			// 代码分割配置
 			chunkSplit: {
-				strategy: 'split-by-size',
-				minSize: 30000,
-				maxSize: 50000,
+				strategy: 'split-by-experience',
+				// strategy: 'split-by-size',
+				// minSize: 30000,
+				// maxSize: 500000,
 			},
+			removeConsole: true, // 生产模式构建时，是否自动移除代码中所有的 console.[methodName]
 		},
 	};
 });

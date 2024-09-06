@@ -3,18 +3,20 @@
 	"private": true,
 	"version": "1.0.0",
 	"scripts": {
-		"start:dev": "NODE_ENV=development rsbuild dev --env-dir envConfig --env-mode dev",
-		"start:test": "NODE_ENV=development rsbuild dev --env-dir envConfig --env-mode test",
-		"start:prod": "NODE_ENV=development rsbuild dev --env-dir envConfig --env-mode prod",
-		"build:dev": "NODE_ENV=production rsbuild build --env-dir envConfig --env-mode dev",
-		"build:prod": "NODE_ENV=production rsbuild build --env-dir envConfig --env-mode prod",
-		"preview:prod": "NODE_ENV=production rsbuild preview --env-dir envConfig --env-mode prod",
+		"start:dev": "cross-env NODE_ENV=development rsbuild dev --env-dir envConfig --env-mode dev",
+		"start:test": "cross-env NODE_ENV=development rsbuild dev --env-dir envConfig --env-mode test",
+		"start:prod": "cross-env NODE_ENV=development rsbuild dev --env-dir envConfig --env-mode prod",
+		"build:dev": "cross-env NODE_ENV=production rsbuild build --env-dir envConfig --env-mode dev",
+		"build:prod": "cross-env NODE_ENV=production rsbuild build --env-dir envConfig --env-mode prod",
+		"preview:prod": "cross-env NODE_ENV=production rsbuild preview --env-dir envConfig --env-mode prod",
+		"build:rsdoctor": "cross-env RSDOCTOR=true rsbuild build",
 		"check": "biome check --write",
 		"format": "biome format --write",
 		"postinstall": "simple-git-hooks"
 	},
 	"dependencies": {
 		"@unocss/reset": "^0.62.3",
+		"cross-env": "^7.0.3",
 		"element-plus": "^2.8.1",
 		"install": "^0.13.0",
 		"lint-staged": "^15.2.10",
@@ -31,18 +33,27 @@
 		"@rsbuild/plugin-sass": "1.0.1-rc.4",
 		"@rsbuild/plugin-vue": "1.0.1-rc.4",
 		"@rsbuild/plugin-vue-jsx": "1.0.1-rc.4",
+		"@rsdoctor/rspack-plugin": "^0.4.1",
 		"@unocss/postcss": "^0.62.3",
 		"@unocss/preset-wind": "^0.62.3",
 		"unocss": "^0.62.3",
 		"unplugin-auto-import": "^0.18.2",
 		"unplugin-vue-components": "^0.27.4"
 	},
-	"browserslist": ["iOS >= 9", "Android >= 4.4", "last 2 versions", "> 0.2%", "not dead"],
+	"browserslist": [
+		"iOS >= 9",
+		"Android >= 4.4",
+		"last 2 versions",
+		"> 0.2%",
+		"not dead"
+	],
 	"simple-git-hooks": {
 		"pre-commit": "npx lint-staged"
 	},
 	"lint-staged": {
-		"*.{js,jsx,ts,tsx,vue}": ["npx @biomejs/biome check --write --unsafe ./src"],
+		"*.{js,jsx,ts,tsx,vue}": [
+			"npx @biomejs/biome check --write --unsafe ./src"
+		],
 		"*.css": "biome format --write ./src",
 		"*.md": "biome format --write"
 	}
