@@ -92,6 +92,7 @@ export default defineConfig(({ env, command, envMode }) => {
 		html: {
 			// 设置页面 title
 			title: 'Rsbuild Vue3',
+			template: './public/index.html',
 		},
 		performance: {
 			// 代码分割配置
