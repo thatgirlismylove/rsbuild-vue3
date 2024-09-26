@@ -75,7 +75,8 @@ export default defineConfig(({ env, command, envMode }) => {
 			polyfill: 'off', // 不需要兼容 IE 11
 			minify: true, // 默认在生产模式下压缩 js css
 			cleanDistPath: env === 'production',
-			sourceMap: true,
+			// 使用默认值
+			// sourceMap: true, 
 		},
 		dev: {
 			lazyCompilation: true, // 开发模式启动，按需编译
