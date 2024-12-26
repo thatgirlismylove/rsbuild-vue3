@@ -72,7 +72,7 @@ export default defineConfig(({ env, command, envMode }) => {
 		},
 		output: {
 			target: 'web', // 默认 environment
-			polyfill: 'off', // 不需要兼容 IE 11
+			polyfill: 'entry', // 不需要兼容 IE 11
 			minify: true, // 默认在生产模式下压缩 js css
 			cleanDistPath: env === 'production',
 			// 使用默认值
