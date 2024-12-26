@@ -71,8 +71,9 @@ export default defineConfig(({ env, command, envMode }) => {
 			},
 		},
 		output: {
+			assetPrefix: 'auto',
 			target: 'web', // 默认 environment
-			polyfill: 'entry', // 不需要兼容 IE 11
+			polyfill: 'usage', // polyfill 设置，具体请参照官网
 			minify: true, // 默认在生产模式下压缩 js css
 			cleanDistPath: env === 'production',
 			// 使用默认值
