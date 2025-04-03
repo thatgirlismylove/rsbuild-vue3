@@ -15,14 +15,14 @@
 		"postinstall": "simple-git-hooks"
 	},
 	"dependencies": {
-		"@unocss/reset": "^0.62.3",
+		"@unocss/reset": "^66.0.0",
 		"cross-env": "^7.0.3",
-		"element-plus": "^2.9.2",
-		"lint-staged": "^15.2.11",
-		"pinia": "^2.3.0",
-		"sass": "^1.83.1",
-		"sass-loader": "^16.0.4",
-		"simple-git-hooks": "^2.11.1",
+		"element-plus": "^2.9.7",
+		"lint-staged": "^15.5.0",
+		"pinia": "^3.0.1",
+		"sass": "^1.86.2",
+		"sass-loader": "^16.0.5",
+		"simple-git-hooks": "^2.12.1",
 		"vue": "^3.5.13",
 		"vue-router": "^4.5.0"
 	},
@@ -34,12 +34,12 @@
 		"@rsbuild/plugin-sass": "1.0.1-rc.4",
 		"@rsbuild/plugin-vue": "1.0.1-rc.4",
 		"@rsbuild/plugin-vue-jsx": "1.0.1-rc.4",
-		"@rsdoctor/rspack-plugin": "^0.4.1",
-		"@unocss/postcss": "^0.62.3",
-		"@unocss/preset-wind": "^0.62.3",
-		"unocss": "^0.62.3",
-		"unplugin-auto-import": "^0.18.2",
-		"unplugin-vue-components": "^0.27.4"
+		"@rsdoctor/rspack-plugin": "^1.0.1",
+		"@unocss/postcss": "^66.0.0",
+		"@unocss/preset-wind": "^66.0.0",
+		"unocss": "^66.0.0",
+		"unplugin-auto-import": "^19.1.2",
+		"unplugin-vue-components": "^28.4.1"
 	},
 	"browserslist": [
 		"iOS >= 9",
